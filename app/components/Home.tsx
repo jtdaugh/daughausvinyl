@@ -114,10 +114,12 @@ export const Home = () => {
     );
 
   const scrollToCollection = () => {
+    setIsMenuOpen(false);
     collectionRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   const scrollToWishlist = () => {
+    setIsMenuOpen(false);
     wishlistRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
@@ -210,14 +212,17 @@ export const Home = () => {
               Search
             </button>
             {searchVisible && (
-            <div className="w-full px-6">
+            <div className="w-full px-6 flex-row items-center">
               <input
                 type="text"
                 value={searchString}
                 onChange={handleSearchChange}
                 placeholder="Search by artist or release title"
-                className="w-full mt-4 p-2 border border-gray-300 rounded-md bg-gray-200"
+                className="w-[80%] mt-4 p-2 border border-gray-300 rounded-md bg-gray-200"
               />
+              <button onClick={() => {toggleSearch(); setIsMenuOpen(false);}} className="pl-2 font-serif  py-2 mx-2 text-white hover:text-gray-300">
+                Hide
+              </button>
             </div>
           )}
           </div>
