@@ -39,11 +39,11 @@ export const ReleaseItem: React.FC<ReleaseItemProps> = ({
       }}
     >
       {selected && (
-        <div className="w-full h-full bg-black/75 p-4 flex flex-col justify-center items-center">
-          <div className="text-sm md:text-lg font-bold text-[#eee] font-serif text-center">
+        <div className="w-full h-full bg-black/80 p-4 flex flex-col justify-center items-center">
+          <div className="text-sm md:text-lg font-bold text-[#fff] font-serif text-center">
             {release.basic_information.title}
           </div>
-          <div className="text-sm md:text-lg font-bold text-[#eee] font-serif text-center mt-3">
+          <div className="text-sm md:text-lg font-bold text-[#fff] font-serif text-center mt-3">
             {release.basic_information.artists[0].name}
           </div>
           <div className="mt-3">
