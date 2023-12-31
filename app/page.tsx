@@ -1,4 +1,4 @@
-import { Home } from "./components/Counter/Home"
+import { Home } from "./components/Home"
 
 /* Components */
 export default function IndexPage() {

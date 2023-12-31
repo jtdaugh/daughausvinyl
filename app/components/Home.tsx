@@ -4,14 +4,11 @@
 import { useCallback, useState } from "react";
 
 /* Instruments */
-import styles from "./counter.module.css";
-import { useDispatch } from "react-redux";
 import {
   Release,
   useGetCollectionQuery,
   useGetWantlistQuery,
 } from "@/app/api/discogs";
-import { type } from "os";
 
 type ReleaseItemProps = {
   release: Release;
@@ -90,7 +87,7 @@ export const Home = () => {
       <h1 className="text-3xl mb-3 text-[#eee] font-serif">
         Current Collection
       </h1>
-      <div className="flex-row flex-wrap w-full grid grid-cols-2 lg:grid-cols-5  xl:grid-cols-6 gap-4">
+      <div className="flex-row flex-wrap w-full grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5  xl:grid-cols-6 gap-4">
         {filteredCollection?.map((release) => (
           <ReleaseItem
             release={release}
@@ -114,7 +111,7 @@ export const Home = () => {
         <hr className="w-full h-px my-10 bg-gray-400 border-0" />
       </div>
       <h1 className="text-3xl mb-3 text-[#eee] font-serif">Wishlist</h1>
-      <div className="flex-row flex-wrap w-full grid grid-cols-2 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+      <div className="flex-row flex-wrap w-full grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
         {filteredWants?.map((release) => (
           <ReleaseItem
             release={release}
