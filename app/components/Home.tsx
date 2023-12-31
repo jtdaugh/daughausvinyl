@@ -25,7 +25,7 @@ export const ReleaseItem: React.FC<ReleaseItemProps> = ({
     const releaseId = release.id;
     return `https://www.discogs.com/release/${releaseId}`;
   }, [release.id]);
-  
+
   return (
     <div
       onClick={onClick}
@@ -47,8 +47,17 @@ export const ReleaseItem: React.FC<ReleaseItemProps> = ({
             {release.basic_information.artists[0].name}
           </div>
           <div className="mt-3">
-            <span className="text-xs md:text-md text-[#eee] font-serif">{release.basic_information.year}{' · '}</span>
-            <a href={link()} target="_blank" className="text-xs md:text-md text-[#eee] font-serif underline">Link</a>          
+            <span className="text-xs md:text-md text-[#eee] font-serif">
+              {release.basic_information.year}
+              {" · "}
+            </span>
+            <a
+              href={link()}
+              target="_blank"
+              className="text-xs md:text-md text-[#eee] font-serif underline"
+            >
+              Link
+            </a>
           </div>
         </div>
       )}
@@ -66,15 +75,39 @@ export const Home = () => {
     setSearchString(event.target.value);
   };
 
-  const filteredCollection = collection?.releases.filter((release) =>
-    release.basic_information.title.toLowerCase().includes(searchString.toLowerCase()) ||
-    release.basic_information.artists[0].name.toLowerCase().includes(searchString.toLowerCase())
-  );
+  const filteredCollection = collection?.releases
+    .slice()
+    .sort((a, b) =>
+      a.basic_information.artists[0].name.localeCompare(
+        b.basic_information.artists[0].name
+      )
+    )
+    .filter(
+      (release) =>
+        release.basic_information.title
+          .toLowerCase()
+          .includes(searchString.toLowerCase()) ||
+        release.basic_information.artists[0].name
+          .toLowerCase()
+          .includes(searchString.toLowerCase())
+    );
 
-  const filteredWants = wants?.wants.filter((release) =>
-    release.basic_information.title.toLowerCase().includes(searchString.toLowerCase()) ||
-    release.basic_information.artists[0].name.toLowerCase().includes(searchString.toLowerCase())
-  );
+  const filteredWants = wants?.wants
+    .slice()
+    .sort((a, b) =>
+      a.basic_information.artists[0].name.localeCompare(
+        b.basic_information.artists[0].name
+      )
+    )
+    .filter(
+      (release) =>
+        release.basic_information.title
+          .toLowerCase()
+          .includes(searchString.toLowerCase()) ||
+        release.basic_information.artists[0].name
+          .toLowerCase()
+          .includes(searchString.toLowerCase())
+    );
 
   return (
     <div className="flex-1 w-full p-6 max-w-[1600px] min-h-screen">
@@ -97,7 +130,7 @@ export const Home = () => {
               if (selectedRelease === release.id) {
                 setSelectedRelease(null);
               } else {
-                setSelectedRelease(release.id)
+                setSelectedRelease(release.id);
               }
             }}
           />
@@ -121,7 +154,7 @@ export const Home = () => {
               if (selectedRelease === release.id) {
                 setSelectedRelease(null);
               } else {
-                setSelectedRelease(release.id)
+                setSelectedRelease(release.id);
               }
             }}
           />
@@ -135,4 +168,3 @@ export const Home = () => {
     </div>
   );
 };
-
