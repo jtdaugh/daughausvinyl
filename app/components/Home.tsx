@@ -47,6 +47,7 @@ export const ReleaseItem: React.FC<ReleaseItemProps> = ({
             {release.basic_information.artists[0].name}
           </div>
           <div className="mt-3">
+            <span className="text-xs md:text-md text-[#eee] font-serif">{release.basic_information.year}{' · '}</span>
             <a href={link()} target="_blank" className="text-xs md:text-md text-[#eee] font-serif underline">Link</a>          
           </div>
         </div>
