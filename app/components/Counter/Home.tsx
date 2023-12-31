@@ -95,7 +95,13 @@ export const Home = () => {
           <ReleaseItem
             release={release}
             selected={selectedRelease === release.id}
-            onClick={() => setSelectedRelease(release.id)}
+            onClick={() => {
+              if (selectedRelease === release.id) {
+                setSelectedRelease(null);
+              } else {
+                setSelectedRelease(release.id)
+              }
+            }}
           />
         ))}
         {filteredCollection?.length === 0 && (
@@ -113,7 +119,13 @@ export const Home = () => {
           <ReleaseItem
             release={release}
             selected={selectedRelease === release.id}
-            onClick={() => setSelectedRelease(release.id)}
+            onClick={() => {
+              if (selectedRelease === release.id) {
+                setSelectedRelease(null);
+              } else {
+                setSelectedRelease(release.id)
+              }
+            }}
           />
         ))}
         {filteredWants?.length === 0 && (
