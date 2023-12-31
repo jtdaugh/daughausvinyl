@@ -224,7 +224,7 @@ export const Home = () => {
         )}
       </div>
      
-      <h1 ref={wishlistRef} className="text-3xl mb-3 text-[#eee] font-serif pt-24">
+      <h1 ref={wishlistRef} className="text-3xl mb-3 text-[#eee] font-serif pt-32">
         Wishlist
       </h1>
       <div className="flex-row flex-wrap w-full grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
