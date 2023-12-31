@@ -34,6 +34,7 @@ const roboto_mono = Roboto_Mono({
 /* Instruments */
 import styles from './styles/layout.module.css'
 import './styles/globals.css'
+import { Footer } from './components/Footer'
 
 export default function RootLayout(props: React.PropsWithChildren) {
   return (
@@ -44,6 +45,7 @@ export default function RootLayout(props: React.PropsWithChildren) {
             <Nav />
             <main className={styles.main}>{props.children}</main>
           </section>
+          <Footer />
         </body>
       </html>
     </Providers>
