@@ -42,7 +42,12 @@ type WantlistResponse = {
 // Define a service using a base URL and expected endpoints
 export const discogsApi = createApi({
   reducerPath: "discogsApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "https://api.discogs.com/" }),
+  baseQuery: fetchBaseQuery({ baseUrl: "https://api.discogs.com/",
+  prepareHeaders: headers => {
+    headers.set('Authorization', 'Discogs token=pEsLvfAIoqZJlczYsxMDoTJVfCVfuNuTaEOsNuUB')
+    return headers
+  },
+}),
   endpoints: (builder) => ({
     getCollection: builder.query<CollectionResponse, void>({
       query: (name) => `users/PaulDaugh/collection/folders/0/releases?per_page=100`,
