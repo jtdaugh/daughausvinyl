@@ -30,7 +30,7 @@ export const ReleaseItem: React.FC<ReleaseItemProps> = ({
     <div
       onClick={onClick}
       key={release.id}
-      className={`cursor-pointer flex-item w-full aspect-square shadow-md ${
+      className={`cursor-pointer flex-item w-full aspect-square shadow-lg ${
         selected ? "selected" : ""
       }`}
       style={{
@@ -110,13 +110,13 @@ export const Home = () => {
     );
 
   return (
-    <div className="flex-1 w-full p-6 max-w-[1600px] min-h-screen">
+    <div className="flex-1 w-full p-6 pt-2 max-w-[1600px] min-h-screen">
       <input
         type="text"
         value={searchString}
         onChange={handleSearchChange}
         placeholder="Search by artist or release title"
-        className="w-full p-2 mb-4 border border-gray-300 rounded-md bg-gray-200"
+        className="w-full p-2 mb-6 border border-gray-300 rounded-md bg-gray-200"
       />
       <h1 className="text-3xl mb-3 text-[#eee] font-serif">
         Current Collection
