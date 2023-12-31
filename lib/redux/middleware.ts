@@ -1,4 +1,5 @@
 /* Core */
+import { discogsApi } from '@/app/api/discogs'
 import { createLogger } from 'redux-logger'
 
 const middleware = [
@@ -15,6 +16,7 @@ const middleware = [
     },
     predicate: () => typeof window !== 'undefined',
   }),
+  discogsApi.middleware,
 ]
 
 export { middleware }
