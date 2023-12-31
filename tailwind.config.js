@@ -9,7 +9,14 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ['var(--font-inter)'],
+        serif: ['var(--font-diphylleia)'],
+        mono: ['var(--font-roboto-mono)'],
+        rubik: ['var(--font-rubik-glitch)'],
+      },
+    },
   },
   plugins: [],
 }

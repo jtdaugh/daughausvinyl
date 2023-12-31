@@ -14,7 +14,7 @@ export const Home = () => {
 
   return (
     <div className='flex-1 w-full p-6 max-w-[1600px]'>
-      <h1 className='text-2xl mb-3 text-[#eee]'>Current Collection</h1>
+      <h1 className='text-3xl mb-3 text-[#eee] font-serif'>Current Collection</h1>
       <div className='flex-row flex-wrap w-full grid grid-cols-2 lg:grid-cols-5  xl:grid-cols-6 gap-4'>
       {
         collection?.releases.map((release) => (
@@ -24,7 +24,7 @@ export const Home = () => {
           ))
       }
       </div>
-      <h1 className='text-2xl mb-3 mt-8 text-[#eee]'>Wishlist</h1>
+      <h1 className='text-3xl mb-3 mt-12 text-[#eee] font-serif'>Wishlist</h1>
       <div className='flex-row flex-wrap w-full grid grid-cols-2 lg:grid-cols-5 xl:grid-cols-6 gap-4'>
       {
         wants?.wants.map((release) => (
