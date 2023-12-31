@@ -12,7 +12,7 @@ export const Nav = () => {
 
   return (
     <nav className={styles.nav}>
-        <div className="text-3xl font-bold my-2">DaugHaus Vinyl</div>
+        <div className="text-3xl font-bold my-2 text-[#eee]">DaugHaus Vinyl</div>
     </nav>
   )
 }
