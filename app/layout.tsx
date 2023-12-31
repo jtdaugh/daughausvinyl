@@ -42,7 +42,7 @@ export default function RootLayout(props: React.PropsWithChildren) {
     <html lang="en" className={`${inter.variable} ${roboto_mono.variable} ${rubik.variable} ${diphylleia.variable}`}>
         <body className='bg-[#702707]'>
           <section className={styles.container}>
-            <Nav />
+            {/* <Nav /> */}
             <main className={styles.main}>{props.children}</main>
           </section>
           <Footer />

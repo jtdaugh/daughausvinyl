@@ -1,7 +1,7 @@
 "use client";
 
 /* Core */
-import { useCallback, useState } from "react";
+import { useCallback, useState, useRef } from "react";
 
 /* Instruments */
 import {
@@ -70,6 +70,9 @@ export const Home = () => {
   const { data: wants } = useGetWantlistQuery();
   const [selectedRelease, setSelectedRelease] = useState<number | null>(null);
   const [searchString, setSearchString] = useState("");
+  const [searchVisible, setSearchVisible] = useState(false);
+  const collectionRef = useRef<HTMLDivElement>(null);
+  const wishlistRef = useRef<HTMLDivElement>(null);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchString(event.target.value);
@@ -109,16 +112,93 @@ export const Home = () => {
           .includes(searchString.toLowerCase())
     );
 
+  const scrollToCollection = () => {
+    collectionRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const scrollToWishlist = () => {
+    wishlistRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const toggleSearch = () => {
+   setSearchVisible(!searchVisible);
+  };
+
   return (
-    <div className="flex-1 w-full p-6 pt-2 max-w-[1600px] min-h-screen">
-      <input
-        type="text"
-        value={searchString}
-        onChange={handleSearchChange}
-        placeholder="Search by artist or release title"
-        className="w-full p-2 mb-6 border border-gray-300 rounded-md bg-gray-200"
-      />
-      <h1 className="text-3xl mb-3 text-[#eee] font-serif">
+    <div className="flex-1 w-full p-6 pt-2 max-w-[1600px] min-h-screen pt-16">
+      <div className="fixed py-4 top-0 left-0 right-0 z-10 border-b border-gray-300/30 bg-[#702707]">
+        <div className="flex items-center justify-center h-16">
+        <button
+            onClick={scrollToWishlist}
+            className=" font-serif  px-4 py-2 mx-2 text-white hover:text-gray-300"
+          >
+            Wishlist
+          </button>
+          <button
+            onClick={scrollToCollection}
+            className="font-serif px-4 py-2 mx-2 text-white hover:text-gray-300"
+          >
+            Collection
+          </button>
+          <div className="text-4xl my-3 text-[#eee] font-rubik px-8">DaugHaus Vinyl
+            
+          </div>
+          
+          <button
+            onClick={toggleSearch}
+            className=" font-serif  px-4 py-2 mx-2 text-white hover:text-gray-300"
+          >
+            Search
+          </button>
+          <span
+            className=" font-serif  px-4 py-2 mx-2 text-[#aaa] hover:text-gray-300"
+          >
+            Est. 2023
+          </span>
+          
+        </div>
+        {searchVisible && (
+        <div className="w-full px-6">
+          <input
+          type="text"
+          value={searchString}
+          onChange={handleSearchChange}
+          placeholder="Search by artist or release title"
+          className="w-full mt-4 p-2 border border-gray-300 rounded-md bg-gray-200"
+        />
+        </div>
+        )}
+      </div>
+      
+     
+      <h1 ref={wishlistRef} className="text-3xl mb-3 text-[#eee] font-serif pt-24">
+        Wishlist
+      </h1>
+      <div className="flex-row flex-wrap w-full grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+        {filteredWants?.map((release) => (
+          <ReleaseItem
+            release={release}
+            selected={selectedRelease === release.id}
+            onClick={() => {
+              if (selectedRelease === release.id) {
+                setSelectedRelease(null);
+              } else {
+                setSelectedRelease(release.id);
+              }
+            }}
+          />
+        ))}
+        {filteredWants?.length === 0 && (
+          <div className="text-md md:text-xl text-[#ccc] font-serif">
+            No results found
+          </div>
+        )}
+      </div>
+
+      <div className="inline-flex items-center justify-center w-full px-10">
+        <hr className="w-full h-px my-10 bg-gray-400 border-0" />
+      </div>
+      <h1 ref={collectionRef} className="text-3xl mb-3 text-[#eee] font-serif pt-24">
         Current Collection
       </h1>
       <div className="flex-row flex-wrap w-full grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5  xl:grid-cols-6 gap-4">
@@ -136,30 +216,6 @@ export const Home = () => {
           />
         ))}
         {filteredCollection?.length === 0 && (
-          <div className="text-md md:text-xl text-[#ccc] font-serif">
-            No results found
-          </div>
-        )}
-      </div>
-      <div className="inline-flex items-center justify-center w-full px-10">
-        <hr className="w-full h-px my-10 bg-gray-400 border-0" />
-      </div>
-      <h1 className="text-3xl mb-3 text-[#eee] font-serif">Wishlist</h1>
-      <div className="flex-row flex-wrap w-full grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
-        {filteredWants?.map((release) => (
-          <ReleaseItem
-            release={release}
-            selected={selectedRelease === release.id}
-            onClick={() => {
-              if (selectedRelease === release.id) {
-                setSelectedRelease(null);
-              } else {
-                setSelectedRelease(release.id);
-              }
-            }}
-          />
-        ))}
-        {filteredWants?.length === 0 && (
           <div className="text-md md:text-xl text-[#ccc] font-serif">
             No results found
           </div>
