@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-type Release = {
+export type Release = {
   id: number;
   instance_id: number;
   date_added: string; // "2023-12-30T11:05:37-08:00",
